@@ -4,8 +4,7 @@ A simple, containerized note-taking application built with Flask and MySQL, desi
 
 ## 📸 Screenshot
 
-<img width="1920" height="1080" alt="Screenshot (128)" src="https://github.com/user-attachments/assets/d03383fe-29c8-403c-a4fd-9cd05742b30a" />
-
+<img width="945" height="470" alt="image" src="https://github.com/user-attachments/assets/d54da08a-f590-42d1-a42b-74d03d195bda" />
 
 *The clean, modern interface with dark theme - perfect for capturing your thoughts and ideas*
 
