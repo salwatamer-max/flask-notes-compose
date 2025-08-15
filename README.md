@@ -2,6 +2,13 @@
 
 A simple, containerized note-taking application built with Flask and MySQL, designed for easy deployment on AWS EC2 instances.
 
+## 📸 Screenshot
+
+<img width="1920" height="1080" alt="Screenshot (128)" src="https://github.com/user-attachments/assets/d03383fe-29c8-403c-a4fd-9cd05742b30a" />
+
+
+*The clean, modern interface with dark theme - perfect for capturing your thoughts and ideas*
+
 ## 🚀 Features
 
 - **Simple Note Management**: Create, read, update, and delete notes
