@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Flask Notes</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Notes</h1>
+        
+        <div class="form-container">
+            <form action="/add" method="post">
+                <div class="textarea-wrapper">
+                    <textarea name="content" placeholder="What's on your mind? Write your thoughts here..." required></textarea>
+                    <div class="textarea-glow"></div>
+                </div>
+                <button type="submit">
+                    <span class="button-icon">✨</span>
+                    <span class="button-text">Add Note</span>
+                </button>
+            </form>
+        </div>
+        
+        <div class="notes-container">
+            {% if notes %}
+                {% for note in notes %}
+                <div class="note" style="animation-delay: {{ loop.index0 * 0.1 }}s;" data-note-id="{{ note[0] }}">
+                    <div class="note-content">
+                        <p>{{ note[1] }}</p>
+                    </div>
+                    <div class="note-footer">
+                        <small>{{ note[2] }}</small>
+                        <div class="note-actions">
+                            <button class="action-btn edit-btn" onclick="editNote({{ note[0] }}, `{{ note[1]|replace('`', '\\`')|replace('\\', '\\\\')|replace('\n', '\\n') }}`)" title="Edit">📝</button>
+                            <form method="post" action="/delete/{{ note[0] }}" style="display: inline;" onsubmit="return confirm('Are you sure you want to delete this note?')">
+                                <button type="submit" class="action-btn delete-btn" title="Delete">🗑️</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="empty-state">
+                    <div class="empty-icon">📝</div>
+                    <h3>No notes yet</h3>
+                    <p>Start capturing your thoughts and ideas!</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <script>
+        function editNote(noteId, currentContent) {
+            console.log('Edit clicked - Note ID:', noteId, 'Content:', currentContent);
+            
+            const newContent = prompt('Edit your note:', currentContent);
+            if (newContent && newContent !== currentContent) {
+                console.log('Submitting edit for note:', noteId, 'New content:', newContent);
+                
+                // Create a form to submit the edit
+                const form = document.createElement('form');
+                form.method = 'POST';
+                form.action = `/edit/${noteId}`;
+                
+                const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = 'content';
+                input.value = newContent;
+                
+                form.appendChild(input);
+                document.body.appendChild(form);
+                form.submit();
+            } else if (newContent === currentContent) {
+                console.log('No changes made to note');
+            } else {
+                console.log('Edit cancelled');
+            }
+        }
+
+        // Add event listeners for delete buttons to debug
+        document.addEventListener('DOMContentLoaded', function() {
+            const deleteButtons = document.querySelectorAll('.delete-btn');
+            deleteButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    console.log('Delete button clicked');
+                    const noteId = this.closest('.note').dataset.noteId;
+                    console.log('Deleting note with ID:', noteId);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

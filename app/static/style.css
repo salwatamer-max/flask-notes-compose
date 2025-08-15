@@ -1,0 +1,17 @@
+cat > app/static/styles.css <<'EOF'
+:root { font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif; }
+body { margin: 0; background: #0b132b; color: #e0e6f0; }
+.container { max-width: 720px; margin: 40px auto; padding: 0 16px; }
+h1 { margin: 0 0 16px; }
+.note-form { display: flex; gap: 8px; margin-bottom: 16px; }
+.note-form input { flex: 1; padding: 10px 12px; border: 1px solid #25324a; border-radius: 10px; background: #0f1a3a; color: #e0e6f0; }
+.note-form button { padding: 10px 14px; border: 0; border-radius: 10px; background: #5bc0be; color: #001219; cursor: pointer; font-weight: 600; }
+.note-form button:hover { filter: brightness(1.05); }
+.muted { color: #9fb3c8; }
+ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+li { background: #0f1a3a; border: 1px solid #25324a; padding: 12px; border-radius: 12px; }
+.content { font-size: 16px; margin-bottom: 6px; }
+.meta { font-size: 12px; color: #9fb3c8; }
+.alert { padding: 10px 12px; margin: 8px 0; border-radius: 10px; }
+.alert.error { background: #5a1f1f; }
+EOF
